@@ -1,0 +1,44 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id String @id @default(uuid())
+  name String @unique
+  lists List[]
+  receivingGifts Gift[] @relation("Recipient")
+  givingGifts Gift[] @relation("Gifter")
+}
+
+model List {
+  id String @id @default(uuid())
+  name String @unique
+  date DateTime
+  type String
+  participants User[]
+  items Gift[]
+}
+
+model Gift {
+  id String @id @default(uuid())
+  name String
+  done Boolean @default(false)
+  list List @relation(fields: [listName], references: [name])
+  listName String
+  recipient User @relation("Recipient", fields: [recepientName], references: [name])
+  recepientName String
+  gifter User @relation("Gifter", fields: [gifterName], references: [name])
+  gifterName String
+}

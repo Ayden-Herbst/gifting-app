@@ -30,11 +30,17 @@
 		"prettier": "^3.6.2",
 		"prettier-plugin-svelte": "^3.4.0",
 		"prettier-plugin-tailwindcss": "^0.7.1",
+		"prisma": "^6.19.0",
 		"svelte": "^5.41.0",
 		"svelte-check": "^4.3.3",
 		"tailwindcss": "^4.1.14",
+		"tsx": "^4.20.6",
 		"typescript": "^5.9.3",
 		"typescript-eslint": "^8.46.1",
 		"vite": "^7.1.10"
+	},
+	"dependencies": {
+		"@prisma/client": "^6.19.0",
+		"dotenv": "^17.2.3"
 	}
 }
